@@ -1,4 +1,4 @@
-/* Global Styles */
+
 :root {
     --primary: #ffc800;
     --primary-hover: #d9aa00;
@@ -55,7 +55,6 @@ h6 {
     margin-bottom: 4rem;
 }
 
-/* Navigation */
 #mainNav {
     padding-top: 25px;
     padding-bottom: 25px;
@@ -128,7 +127,6 @@ h6 {
     }
 }
 
-/* Welcome Section */
 .masthead {
     padding-top: 15rem;
     padding-bottom: 12rem;
@@ -199,7 +197,6 @@ h6 {
     color: var(--primary) !important;
 }
 
-/* Portfolio Section */
 .portfolio-item {
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -254,7 +251,6 @@ h6 {
     font-style: italic;
 }
 
-/* Team Section */
 .team-member img {
     border: 7px solid rgba(0, 0, 0, 0.05);
     width: 220px;
@@ -285,7 +281,6 @@ h6 {
     line-height: 1.8;
 }
 
-/* Partner Logos Section */
 .partner-logos {
     padding: 3rem 0;
     border-top: 1px solid #f1f1f1;
@@ -307,7 +302,6 @@ h6 {
     opacity: 1;
 }
 
-/* Footer Section */
 .footer {
     background-color: var(--white);
     border-top: 1px solid #ececec;

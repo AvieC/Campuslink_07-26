@@ -1,34 +1,7 @@
-/* ==========================================================================
-   CSS Table of Contents - PHÁT TRIỂN THEO VÒNG LẶP (ITERATIVE APPROACH)
-   
-   [ITERATIVE 1: SETUP & GLOBALS] - Cấu hình cơ bản & Thống nhất thiết kế chung
-     1. Variables & Global Styles
-     4. Section Commons
-     
-   [ITERATIVE 2: STATIC DESKTOP LAYOUT] - Dựng khung xương bố cục tĩnh trên PC
-     2. Navigation Bar (Layout cơ bản)
-     3. Welcome Header (Masthead Layout)
-     5. Services Section (Layout cột Flexbox)
-     6. Portfolio Section (Layout lưới Grid)
-     7. Team Section (Layout thành viên Grid)
-     8. Partner Logos (Layout Logo Flexbox)
-     9. Contact Form (Layout Form Grid)
-     10. Footer (Layout Footer Grid)
-     
-   [ITERATIVE 3: REFINEMENTS & ANIMATIONS] - Tinh chỉnh thẩm mỹ & Hiệu ứng tương tác
-     - Hover transitions (Links, Buttons, Social icons)
-     - Overlay effect (Portfolio Hover overlay)
-     - Grayscale transition (Logo grayscale hover)
-     - Sticky Navbar Shrink (Đổi màu thanh nav khi cuộn)
-     
-   [ITERATIVE 4: RESPONSIVE & MOBILE DRAWER] - Tương thích di động & Menu kéo
-     11. Responsive Media Queries
-   ========================================================================== */
 
-/* === [ITERATIVE 1: SETUP & GLOBALS] === */
-/* 1. Variables & Global Styles */
+
 :root {
-    /* [ITERATIVE 1: SETUP & GLOBALS] */
+    
     --white: #ffffff;
     --dark: #212529;
     --light: #f8f9fa;
@@ -38,7 +11,7 @@
     --font-serif: 'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --font-sans: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-    /* [ITERATIVE 3: REFINEMENTS & ANIMATIONS] */
+    
     --primary: #ffc800;
     --primary-hover: #d9aa00;
     --dark-hover: #1c1f23;
@@ -65,7 +38,6 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Typography Helpers */
 h1,
 h2,
 h3,
@@ -110,7 +82,6 @@ h6 {
     padding-left: 25px;
 }
 
-/* Button Global Styles */
 .btn {
     display: inline-block;
     font-family: var(--font-heading);
@@ -136,7 +107,6 @@ h6 {
     border-color: var(--primary);
 }
 
-/* [ITERATIVE 3 - Refinements & Animations] */
 .btn-primary:hover,
 .btn-primary:focus {
     color: var(--white);
@@ -150,10 +120,8 @@ h6 {
     border-radius: 0.5rem;
 }
 
-/* === [ITERATIVE 2: STATIC DESKTOP LAYOUT] === */
-/* 2. Navigation Bar */
 .navbar {
-    /* [ITERATIVE 2: STATIC DESKTOP LAYOUT] */
+    
     position: fixed;
     top: 0;
     right: 0;
@@ -162,7 +130,7 @@ h6 {
     padding-top: 25px;
     padding-bottom: 25px;
 
-    /* [ITERATIVE 3: REFINEMENTS & ANIMATIONS] */
+    
     transition: padding-top 0.3s, background-color 0.3s;
 }
 
@@ -212,14 +180,11 @@ h6 {
     transition: color 0.15s ease-in-out;
 }
 
-/* [ITERATIVE 3 - Refinements & Animations] */
 .nav-link:hover,
 .nav-link.active {
     color: var(--primary) !important;
 }
 
-/* [ITERATIVE 3 - Refinements & Animations] */
-/* Navbar appearance on scroll */
 .navbar.navbar-shrink {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -231,7 +196,6 @@ h6 {
     color: var(--white);
 }
 
-/* 3. Welcome Header (Masthead) */
 .masthead {
     padding-top: 15rem;
     padding-bottom: 12rem;
@@ -242,6 +206,7 @@ h6 {
     background-attachment: scroll;
     background-position: center center;
     background-size: cover;
+    min-height: 100vh;
 }
 
 .masthead-subheading {
@@ -260,7 +225,6 @@ h6 {
     font-family: var(--font-heading);
 }
 
-/* 4. Section Commons */
 .page-section {
     padding: 6rem 0;
 }
@@ -280,7 +244,6 @@ h6 {
     margin-bottom: 4rem;
 }
 
-/* 5. Services Section */
 .services-flex {
     display: flex;
     flex-wrap: wrap;
@@ -326,7 +289,6 @@ h6 {
     margin-bottom: 1rem !important;
 }
 
-/* 6. Portfolio Section */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -334,11 +296,11 @@ h6 {
 }
 
 .portfolio-item {
-    /* [ITERATIVE 2: STATIC DESKTOP LAYOUT] */
+    
     background-color: var(--white);
     position: relative;
 
-    /* [ITERATIVE 3: REFINEMENTS & ANIMATIONS] */
+    
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border-radius: 4px;
     overflow: hidden;
@@ -358,12 +320,10 @@ h6 {
     transition: transform 0.5s ease;
 }
 
-/* [ITERATIVE 3 - Refinements & Animations] */
 .portfolio-item:hover .portfolio-link img {
     transform: scale(1.05);
 }
 
-/* [ITERATIVE 3 - Refinements & Animations] */
 .portfolio-hover {
     display: flex;
     flex-direction: column;
@@ -405,7 +365,6 @@ h6 {
     font-size: 1rem;
 }
 
-/* 7. Team Section */
 .team-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -472,7 +431,6 @@ h6 {
     line-height: 1.8;
 }
 
-/* 8. Partner Logos */
 .partner-logos {
     padding: 3rem 0;
     border-top: 1px solid #f1f1f1;
@@ -488,98 +446,23 @@ h6 {
 }
 
 .img-brand {
-    /* [ITERATIVE 2: STATIC DESKTOP LAYOUT] */
+    
     height: 50px;
     width: auto;
     object-fit: contain;
 
-    /* [ITERATIVE 3: REFINEMENTS & ANIMATIONS] */
+    
     filter: grayscale(100%);
     opacity: 0.6;
     transition: var(--transition);
 }
 
-/* [ITERATIVE 3 - Refinements & Animations] */
 .img-brand:hover {
     filter: grayscale(0%);
     opacity: 1;
 }
 
-/* 9. Contact Form */
-#contact {
-    background-color: var(--dark);
-    background-image: url('https://blackrockdigital.github.io/startbootstrap-agency/assets/img/map-image.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    color: var(--white);
-}
 
-#contact .section-heading {
-    color: var(--white);
-}
-
-#contactForm {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-bottom: 30px;
-}
-
-.form-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.form-group {
-    position: relative;
-}
-
-.form-control {
-    display: block;
-    width: 100%;
-    height: auto;
-    padding: 1.25rem;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.5;
-    color: #495057;
-    background-color: var(--white);
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    font-family: var(--font-heading);
-}
-
-.form-control::placeholder {
-    color: var(--muted);
-    font-weight: 700;
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 0.2rem rgba(255, 200, 0, 0.25);
-}
-
-.form-group-textarea {
-    height: 100%;
-}
-
-textarea.form-control {
-    height: 100%;
-    min-height: 236px;
-    resize: none;
-}
-
-/* 10. Footer */
 .footer {
     background-color: var(--white);
     border-top: 1px solid #ececec;
@@ -615,10 +498,6 @@ textarea.form-control {
     color: var(--primary);
 }
 
-/* === [ITERATIVE 4: RESPONSIVE & MOBILE DRAWER] === */
-/* 11. Responsive Media Queries */
-
-/* Tablet & Smaller Layout (max-width: 992px) */
 @media (max-width: 992px) {
     .navbar {
         background-color: var(--dark);
@@ -694,7 +573,6 @@ textarea.form-control {
     }
 }
 
-/* Mobile Devices (max-width: 768px) */
 @media (max-width: 768px) {
     .masthead {
         padding-top: 12rem;
@@ -721,13 +599,6 @@ textarea.form-control {
         grid-template-columns: 1fr;
     }
 
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    textarea.form-control {
-        min-height: 150px;
-    }
 
     .page-section {
         padding: 4rem 0;
