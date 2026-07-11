@@ -1,0 +1,343 @@
+/* ==========================================================================
+   CSS Table of Contents - Custom Bootstrap overrides & enhancements
+   ========================================================================== */
+
+:root {
+    --primary: #ffc800;
+    --primary-hover: #d9aa00;
+    --dark: #212529;
+    --white: #ffffff;
+    --muted: #6c757d;
+    --text-dark: #333333;
+
+    --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-serif: 'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-sans: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    --transition: all 0.3s ease-in-out;
+}
+
+/* Global Styles Override */
+body {
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+}
+
+/* Background utilities */
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.bg-light-gray {
+    background-color: #f3f4f6 !important;
+}
+
+/* Custom section utility */
+.page-section {
+    padding: 6rem 0;
+}
+
+.section-heading {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.section-subheading {
+    font-size: 1rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 4rem;
+}
+
+/* 1. Navigation Overrides */
+#mainNav {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    transition: padding-top 0.3s, background-color 0.3s;
+    background-color: transparent;
+}
+
+#mainNav .navbar-brand img {
+    height: 60px;
+    display: block;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--white);
+    letter-spacing: 0.0625em;
+    font-weight: 400;
+    transition: color 0.15s ease-in-out;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link:hover,
+#mainNav .navbar-nav .nav-item .nav-link.active {
+    color: var(--primary) !important;
+}
+
+/* Custom Navbar Toggler matching Vanilla */
+#mainNav .navbar-toggler {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--white) !important;
+    background-color: var(--primary) !important;
+    border: 1px solid var(--primary) !important;
+    border-radius: 0.25rem;
+    outline: none;
+    box-shadow: none;
+}
+
+#mainNav .navbar-toggler:hover,
+#mainNav .navbar-toggler:focus {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+/* Navbar appearance on scroll */
+#mainNav.navbar-shrink {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: var(--dark) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#mainNav.navbar-shrink .nav-link {
+    color: var(--white) !important;
+}
+
+/* Navbar responsive adjustments */
+@media (max-width: 991.98px) {
+    #mainNav {
+        background-color: var(--dark) !important;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    #mainNav .navbar-collapse {
+        background-color: var(--dark);
+        border-radius: 4px;
+        padding: 15px 20px;
+        margin-top: 15px;
+    }
+}
+
+/* 2. Welcome Header (Masthead) */
+.masthead {
+    padding-top: 15rem;
+    padding-bottom: 12rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../resources/header-bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.masthead-subheading {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    font-style: italic;
+    line-height: 2.25rem;
+    margin-bottom: 2rem;
+}
+
+.masthead-heading {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 4.5rem;
+    margin-bottom: 4rem;
+    font-family: var(--font-heading);
+}
+
+@media (max-width: 767.98px) {
+    .masthead {
+        padding-top: 12rem;
+        padding-bottom: 9rem;
+    }
+
+    .masthead-heading {
+        font-size: 2.25rem;
+        line-height: 2.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .masthead-subheading {
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Buttons style override */
+.btn-primary {
+    color: var(--dark);
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    color: var(--white) !important;
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+.btn-xl {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.125rem;
+    border-radius: 0.5rem;
+}
+
+/* 3. Services Section Icon Custom color override */
+.text-primary {
+    color: var(--primary) !important;
+}
+
+/* 4. Portfolio Section Overlays & Customization */
+.portfolio-item {
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.portfolio-link {
+    display: block;
+    position: relative;
+}
+
+.portfolio-link img {
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover .portfolio-link img {
+    transform: scale(1.05);
+}
+
+.portfolio-hover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 200, 0, 0.9);
+    opacity: 0;
+    z-index: 1;
+    transition: var(--transition);
+}
+
+.portfolio-hover:hover {
+    opacity: 1;
+}
+
+.portfolio-hover-content {
+    color: var(--white);
+}
+
+.portfolio-caption-heading {
+    font-family: var(--font-heading);
+}
+
+.portfolio-caption-subheading {
+    font-family: var(--font-serif);
+    font-style: italic;
+}
+
+/* 5. Team Section custom styles */
+.team-member img {
+    border: 7px solid rgba(0, 0, 0, 0.05);
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+}
+
+.btn-social {
+    display: inline-flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    transition: var(--transition);
+}
+
+.btn-social:hover {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--dark) !important;
+    transform: translateY(-3px);
+}
+
+.large {
+    font-size: 1.15rem;
+    font-family: var(--font-serif);
+    line-height: 1.8;
+}
+
+/* 6. Partner Logos */
+.partner-logos {
+    padding: 3rem 0;
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+    background-color: var(--white);
+}
+
+.img-brand {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.img-brand:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* 10. Footer Overrides */
+.footer {
+    background-color: var(--white);
+    border-top: 1px solid #ececec;
+    padding: 5px 0;
+}
+
+.footer-copyright {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.footer-links a {
+    color: var(--dark);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    transition: color 0.15s ease-in-out;
+}
+
+.footer-links a:hover {
+    color: var(--primary) !important;
+}

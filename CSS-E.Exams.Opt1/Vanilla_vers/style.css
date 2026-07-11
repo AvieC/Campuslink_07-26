@@ -1,0 +1,735 @@
+/* ==========================================================================
+   CSS Table of Contents - PHÁT TRIỂN THEO VÒNG LẶP (ITERATIVE APPROACH)
+   
+   [ITERATIVE 1: SETUP & GLOBALS] - Cấu hình cơ bản & Thống nhất thiết kế chung
+     1. Variables & Global Styles
+     4. Section Commons
+     
+   [ITERATIVE 2: STATIC DESKTOP LAYOUT] - Dựng khung xương bố cục tĩnh trên PC
+     2. Navigation Bar (Layout cơ bản)
+     3. Welcome Header (Masthead Layout)
+     5. Services Section (Layout cột Flexbox)
+     6. Portfolio Section (Layout lưới Grid)
+     7. Team Section (Layout thành viên Grid)
+     8. Partner Logos (Layout Logo Flexbox)
+     9. Contact Form (Layout Form Grid)
+     10. Footer (Layout Footer Grid)
+     
+   [ITERATIVE 3: REFINEMENTS & ANIMATIONS] - Tinh chỉnh thẩm mỹ & Hiệu ứng tương tác
+     - Hover transitions (Links, Buttons, Social icons)
+     - Overlay effect (Portfolio Hover overlay)
+     - Grayscale transition (Logo grayscale hover)
+     - Sticky Navbar Shrink (Đổi màu thanh nav khi cuộn)
+     
+   [ITERATIVE 4: RESPONSIVE & MOBILE DRAWER] - Tương thích di động & Menu kéo
+     11. Responsive Media Queries
+   ========================================================================== */
+
+/* === [ITERATIVE 1: SETUP & GLOBALS] === */
+/* 1. Variables & Global Styles */
+:root {
+    /* [ITERATIVE 1: SETUP & GLOBALS] */
+    --white: #ffffff;
+    --dark: #212529;
+    --light: #f8f9fa;
+    --muted: #6c757d;
+    --text-dark: #333333;
+    --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-serif: 'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-sans: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    /* [ITERATIVE 3: REFINEMENTS & ANIMATIONS] */
+    --primary: #ffc800;
+    --primary-hover: #d9aa00;
+    --dark-hover: #1c1f23;
+    --transition: all 0.3s ease-in-out;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--text-dark);
+    background-color: var(--white);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Typography Helpers */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--muted) !important;
+}
+
+.text-muted-white {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.bg-light {
+    background-color: var(--light) !important;
+}
+
+.bg-light-gray {
+    background-color: #f3f4f6 !important;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+/* Button Global Styles */
+.btn {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: var(--transition);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-primary {
+    color: var(--dark);
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+/* [ITERATIVE 3 - Refinements & Animations] */
+.btn-primary:hover,
+.btn-primary:focus {
+    color: var(--white);
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.btn-xl {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.125rem;
+    border-radius: 0.5rem;
+}
+
+/* === [ITERATIVE 2: STATIC DESKTOP LAYOUT] === */
+/* 2. Navigation Bar */
+.navbar {
+    /* [ITERATIVE 2: STATIC DESKTOP LAYOUT] */
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    /* [ITERATIVE 3: REFINEMENTS & ANIMATIONS] */
+    transition: padding-top 0.3s, background-color 0.3s;
+}
+
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand img {
+    height: 60px;
+    display: block;
+}
+
+.navbar-toggler {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--white);
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    outline: none;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-link {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--white);
+    letter-spacing: 0.0625em;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 10px 0;
+    transition: color 0.15s ease-in-out;
+}
+
+/* [ITERATIVE 3 - Refinements & Animations] */
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary) !important;
+}
+
+/* [ITERATIVE 3 - Refinements & Animations] */
+/* Navbar appearance on scroll */
+.navbar.navbar-shrink {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: var(--dark);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.navbar-shrink .nav-link {
+    color: var(--white);
+}
+
+/* 3. Welcome Header (Masthead) */
+.masthead {
+    padding-top: 15rem;
+    padding-bottom: 12rem;
+    text-align: center;
+    color: var(--white);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../resources/header-bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+}
+
+.masthead-subheading {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    font-style: italic;
+    line-height: 2.25rem;
+    margin-bottom: 2rem;
+}
+
+.masthead-heading {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 4.5rem;
+    margin-bottom: 4rem;
+    font-family: var(--font-heading);
+}
+
+/* 4. Section Commons */
+.page-section {
+    padding: 6rem 0;
+}
+
+.section-heading {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.section-subheading {
+    font-size: 1rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 4rem;
+}
+
+/* 5. Services Section */
+.services-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.service-item {
+    flex: 1 1 300px;
+    max-width: 380px;
+    padding: 0 15px;
+    transition: var(--transition);
+}
+
+.fa-stack {
+    display: inline-block;
+    height: 2em;
+    line-height: 2em;
+    position: relative;
+    vertical-align: middle;
+    width: 2.5em;
+    margin-bottom: 20px;
+}
+
+.fa-stack-2x {
+    font-size: 2em;
+}
+
+.fa-stack-1x {
+    line-height: inherit;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.fa-inverse {
+    color: var(--white) !important;
+}
+
+.my-3 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+
+/* 6. Portfolio Section */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.portfolio-item {
+    /* [ITERATIVE 2: STATIC DESKTOP LAYOUT] */
+    background-color: var(--white);
+    position: relative;
+
+    /* [ITERATIVE 3: REFINEMENTS & ANIMATIONS] */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.portfolio-link {
+    display: block;
+    position: relative;
+}
+
+.portfolio-link img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* [ITERATIVE 3 - Refinements & Animations] */
+.portfolio-item:hover .portfolio-link img {
+    transform: scale(1.05);
+}
+
+/* [ITERATIVE 3 - Refinements & Animations] */
+.portfolio-hover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 200, 0, 0.9);
+    opacity: 0;
+    z-index: 1;
+    transition: var(--transition);
+}
+
+.portfolio-hover:hover {
+    opacity: 1;
+}
+
+.portfolio-hover-content {
+    color: var(--white);
+    font-size: 1.25rem;
+}
+
+.portfolio-caption {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.portfolio-caption-heading {
+    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.portfolio-caption-subheading {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+}
+
+/* 7. Team Section */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.team-member {
+    padding: 15px;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+    border: 7px solid rgba(0, 0, 0, 0.05);
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+}
+
+.mx-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    display: block;
+}
+
+.team-member h4 {
+    margin-top: 25px;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+.team-member p {
+    margin-bottom: 20px;
+}
+
+.btn-social {
+    display: inline-flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: var(--dark);
+    color: var(--white);
+    transition: var(--transition);
+    text-decoration: none;
+    border: none;
+}
+
+.btn-social:hover {
+    background-color: var(--primary);
+    color: var(--dark);
+    transform: translateY(-3px);
+}
+
+.mx-2 {
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+}
+
+.large {
+    font-size: 1.15rem;
+    font-family: var(--font-serif);
+    line-height: 1.8;
+}
+
+/* 8. Partner Logos */
+.partner-logos {
+    padding: 3rem 0;
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.logo-flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.img-brand {
+    /* [ITERATIVE 2: STATIC DESKTOP LAYOUT] */
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+
+    /* [ITERATIVE 3: REFINEMENTS & ANIMATIONS] */
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+/* [ITERATIVE 3 - Refinements & Animations] */
+.img-brand:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* 9. Contact Form */
+#contact {
+    background-color: var(--dark);
+    background-image: url('https://blackrockdigital.github.io/startbootstrap-agency/assets/img/map-image.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: var(--white);
+}
+
+#contact .section-heading {
+    color: var(--white);
+}
+
+#contactForm {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 1.25rem;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #495057;
+    background-color: var(--white);
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-family: var(--font-heading);
+}
+
+.form-control::placeholder {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(255, 200, 0, 0.25);
+}
+
+.form-group-textarea {
+    height: 100%;
+}
+
+textarea.form-control {
+    height: 100%;
+    min-height: 236px;
+    resize: none;
+}
+
+/* 10. Footer */
+.footer {
+    background-color: var(--white);
+    border-top: 1px solid #ececec;
+    padding: 5px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-copyright {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.footer-links {
+    text-align: right;
+}
+
+.footer-links a {
+    color: var(--dark);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+/* === [ITERATIVE 4: RESPONSIVE & MOBILE DRAWER] === */
+/* 11. Responsive Media Queries */
+
+/* Tablet & Smaller Layout (max-width: 992px) */
+@media (max-width: 992px) {
+    .navbar {
+        background-color: var(--dark);
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .navbar-toggler {
+        display: flex;
+    }
+
+    .navbar-collapse {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 5%;
+        width: 200px;
+        background-color: var(--dark);
+        border-radius: 4px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        padding: 15px 20px;
+        z-index: 1000;
+    }
+
+    .navbar-collapse.show {
+        display: block;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    .nav-link {
+        padding: 6px 0;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .masthead-heading {
+        font-size: 3.5rem;
+        line-height: 3.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .masthead-subheading {
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-links {
+        text-align: center;
+    }
+
+    .footer-links a {
+        margin: 0 10px;
+    }
+}
+
+/* Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+    .masthead {
+        padding-top: 12rem;
+        padding-bottom: 9rem;
+    }
+
+    .masthead-heading {
+        font-size: 2.25rem;
+        line-height: 2.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .masthead-subheading {
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    textarea.form-control {
+        min-height: 150px;
+    }
+
+    .page-section {
+        padding: 4rem 0;
+    }
+}
