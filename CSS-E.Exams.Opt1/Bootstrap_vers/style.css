@@ -1,7 +1,4 @@
-/* ==========================================================================
-   CSS Table of Contents - Custom Bootstrap overrides & enhancements
-   ========================================================================== */
-
+/* Global Styles */
 :root {
     --primary: #ffc800;
     --primary-hover: #d9aa00;
@@ -17,7 +14,6 @@
     --transition: all 0.3s ease-in-out;
 }
 
-/* Global Styles Override */
 body {
     font-family: var(--font-sans);
     color: var(--text-dark);
@@ -32,7 +28,6 @@ h6 {
     font-family: var(--font-heading);
 }
 
-/* Background utilities */
 .bg-light {
     background-color: #f8f9fa !important;
 }
@@ -41,7 +36,6 @@ h6 {
     background-color: #f3f4f6 !important;
 }
 
-/* Custom section utility */
 .page-section {
     padding: 6rem 0;
 }
@@ -61,7 +55,7 @@ h6 {
     margin-bottom: 4rem;
 }
 
-/* 1. Navigation Overrides */
+/* Navigation */
 #mainNav {
     padding-top: 25px;
     padding-bottom: 25px;
@@ -88,7 +82,6 @@ h6 {
     color: var(--primary) !important;
 }
 
-/* Custom Navbar Toggler matching Vanilla */
 #mainNav .navbar-toggler {
     padding: 0.5rem 0.75rem;
     font-size: 0.85rem;
@@ -109,7 +102,6 @@ h6 {
     border-color: var(--primary-hover) !important;
 }
 
-/* Navbar appearance on scroll */
 #mainNav.navbar-shrink {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -121,7 +113,6 @@ h6 {
     color: var(--white) !important;
 }
 
-/* Navbar responsive adjustments */
 @media (max-width: 991.98px) {
     #mainNav {
         background-color: var(--dark) !important;
@@ -137,7 +128,7 @@ h6 {
     }
 }
 
-/* 2. Welcome Header (Masthead) */
+/* Welcome Section */
 .masthead {
     padding-top: 15rem;
     padding-bottom: 12rem;
@@ -184,7 +175,6 @@ h6 {
     }
 }
 
-/* Buttons style override */
 .btn-primary {
     color: var(--dark);
     background-color: var(--primary);
@@ -205,12 +195,11 @@ h6 {
     border-radius: 0.5rem;
 }
 
-/* 3. Services Section Icon Custom color override */
 .text-primary {
     color: var(--primary) !important;
 }
 
-/* 4. Portfolio Section Overlays & Customization */
+/* Portfolio Section */
 .portfolio-item {
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -265,7 +254,7 @@ h6 {
     font-style: italic;
 }
 
-/* 5. Team Section custom styles */
+/* Team Section */
 .team-member img {
     border: 7px solid rgba(0, 0, 0, 0.05);
     width: 220px;
@@ -296,7 +285,7 @@ h6 {
     line-height: 1.8;
 }
 
-/* 6. Partner Logos */
+/* Partner Logos Section */
 .partner-logos {
     padding: 3rem 0;
     border-top: 1px solid #f1f1f1;
@@ -318,7 +307,7 @@ h6 {
     opacity: 1;
 }
 
-/* 10. Footer Overrides */
+/* Footer Section */
 .footer {
     background-color: var(--white);
     border-top: 1px solid #ececec;
