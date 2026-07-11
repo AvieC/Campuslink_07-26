@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coolors - Color Palette Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style_coolors.css">
+</head>
+
+<body class="h-screen flex flex-col overflow-hidden bg-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="flex items-center justify-between px-4 py-2 border-b border-gray-200 h-14 shrink-0">
+        <!-- Left: Logo + Ad -->
+        <div class="flex items-center gap-4">
+            <!-- Coolors Logo -->
+            <a href="#" class="flex items-center">
+                <svg width="90" height="32" viewBox="0 0 90 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="90" height="40" rx="4" fill="#1E6FF1" />
+                    <text x="8" y="22" font-family="Inter" font-weight="800" font-size="20" fill="orange">coolors</text>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Right: Nav Links -->
+        <nav class="flex items-center gap-4">
+            <button class="flex items-center gap-1 text-gray-700 font-medium hover:text-gray-900 text-sm">
+                Tools
+                <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <a href="#" class="text-pink-500 font-semibold text-sm hover:text-pink-600">Go Pro</a>
+            <a href="#" class="text-gray-700 font-medium text-sm hover:text-gray-900">Sign in</a>
+            <a href="#"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg text-sm transition-colors">
+                Sign up
+            </a>
+        </nav>
+    </header>
+
+    <!-- Toolbar -->
+    <div class="flex items-center justify-between px-4 py-2 border-b border-gray-200 h-12 shrink-0">
+        <!-- Left: Hint + Tools -->
+        <div class="flex items-center gap-4">
+            <span class="text-gray-600 text-sm">Press the spacebar to generate color palettes!</span>
+
+            <div class="flex items-center gap-1 ml-2">
+                <!-- More options -->
+                <button class="p-2 rounded hover:bg-gray-100 text-gray-500 text-sm" title="More options">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+                <!-- AI Generate -->
+                <button class="p-2 rounded hover:bg-gray-100 text-gray-500 text-sm" title="AI Generate">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </button>
+                <!-- Camera -->
+                <button class="p-2 rounded hover:bg-gray-100 text-gray-500 text-sm" title="Extract from image">
+                    <i class="fa-solid fa-camera"></i>
+                </button>
+                <!-- Grid view -->
+                <button class="p-2 rounded hover:bg-gray-100 text-gray-500 text-sm" title="Explore palettes">
+                    <i class="fa-solid fa-grip"></i>
+                </button>
+                <!-- Accessibility -->
+                <button class="p-2 rounded hover:bg-gray-100 text-gray-500 text-sm" title="Accessibility">
+                    <i class="fa-solid fa-universal-access"></i>
+                </button>
+                <!-- Contrast -->
+                <button class="p-2 rounded hover:bg-gray-100 text-gray-500 text-sm" title="Contrast checker">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+                <!-- Visualize -->
+                <button class="p-2 rounded hover:bg-gray-100 text-gray-500 text-sm" title="Visualize">
+                    <i class="fa-solid fa-glasses"></i>
+                </button>
+                <!-- Adjust -->
+                <button class="p-2 rounded hover:bg-gray-100 text-gray-500 text-sm" title="Adjust palette">
+                    <i class="fa-solid fa-sliders"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Right: Actions -->
+        <div class="flex items-center gap-1">
+            <!-- Undo -->
+            <button class="p-2 rounded hover:bg-gray-100 text-gray-400 text-sm" title="Undo">
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+            <!-- Redo -->
+            <button class="p-2 rounded hover:bg-gray-100 text-gray-400 text-sm" title="Redo">
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+            <div class="w-px h-5 bg-gray-200 mx-1"></div>
+
+            <!-- View -->
+            <button
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded hover:bg-gray-100 text-gray-700 text-sm font-medium">
+                <i class="fa-regular fa-eye"></i>
+                View
+            </button>
+            <!-- Export -->
+            <button
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded hover:bg-gray-100 text-gray-700 text-sm font-medium">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                Export
+            </button>
+            <!-- Save -->
+            <button
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded hover:bg-gray-100 text-gray-700 text-sm font-medium">
+                <i class="fa-regular fa-heart"></i>
+                Save
+            </button>
+
+            <div class="w-px h-5 bg-gray-200 mx-1"></div>
+
+            <!-- Menu -->
+            <button class="p-2 rounded hover:bg-gray-100 text-gray-700 text-sm" title="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Color Palette Main Area -->
+    <main class="flex flex-1 overflow-hidden relative">
+
+        <!-- Color Panels -->
+        <div class="flex w-full h-full" id="palette-container">
+
+            <!-- Add color button before first panel -->
+            <div class="add-color-wrapper flex items-center justify-center w-4 shrink-0 relative z-10">
+                <button
+                    class="add-color-btn w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center text-gray-500 hover:text-gray-700 hover:border-gray-400 transition-all">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Panel 1: Frosted Mint -->
+            <div class="color-panel flex-1 relative group flex flex-col justify-end" style="background-color: #EAF4D3;">
+                <!-- Top Actions (hover) -->
+                <div class="panel-actions absolute top-4 left-0 right-0 flex flex-col items-center gap-2 z-10">
+                    <button
+                        class="drag-handle w-8 h-8 rounded-full flex items-center justify-center text-gray-700 cursor-grab"
+                        title="Drag">
+                        <i class="fa-solid fa-grip-vertical text-sm"></i>
+                    </button>
+                    <button class="lock-btn w-8 h-8 rounded-full flex items-center justify-center text-gray-700"
+                        title="Lock color">
+                        <i class="fa-solid fa-lock-open text-sm"></i>
+                    </button>
+                    <button class="copy-btn w-8 h-8 rounded-full flex items-center justify-center text-gray-700"
+                        title="Copy">
+                        <i class="fa-regular fa-copy text-sm"></i>
+                    </button>
+                    <button class="like-btn w-8 h-8 rounded-full flex items-center justify-center text-gray-700"
+                        title="Like">
+                        <i class="fa-regular fa-heart text-sm"></i>
+                    </button>
+                    <button class="view-btn w-8 h-8 rounded-full flex items-center justify-center text-gray-700"
+                        title="View shades">
+                        <i class="fa-solid fa-eye text-sm"></i>
+                    </button>
+                    <button class="delete-btn w-8 h-8 rounded-full flex items-center justify-center text-gray-700"
+                        title="Delete">
+                        <i class="fa-solid fa-trash text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Bottom Info -->
+                <div class="p-5 pb-8 flex flex-col items-center">
+                    <div class="hex-code text-3xl font-black tracking-wider text-gray-900 mb-1">EAF4D3</div>
+                    <div class="color-name text-sm font-medium text-gray-600 tracking-wide mb-3">Frosted Mint</div>
+                    <button
+                        class="random-panel-btn bg-white/95 hover:bg-white text-gray-800 text-base font-semibold py-2 px-5 rounded-full border border-gray-300 shadow-sm transition-all flex items-center gap-2 z-10"
+                        title="Randomize color">
+                        <i class="fa-solid fa-arrows-rotate"></i> Random
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add color button -->
+            <div class="add-color-wrapper flex items-center justify-center w-4 shrink-0 relative z-10">
+                <button
+                    class="add-color-btn w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center text-gray-500 hover:text-gray-700 hover:border-gray-400 transition-all">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Panel 2: Vanilla Custard -->
+            <div class="color-panel flex-1 relative group flex flex-col justify-end" style="background-color: #DBD8AE;">
+                <div class="panel-actions absolute top-4 left-0 right-0 flex flex-col items-center gap-2 z-10">
+                    <button
+                        class="drag-handle w-8 h-8 rounded-full flex items-center justify-center text-gray-700 cursor-grab"
+                        title="Drag">
+                        <i class="fa-solid fa-grip-vertical text-sm"></i>
+                    </button>
+                    <button class="lock-btn w-8 h-8 rounded-full flex items-center justify-center text-gray-700"
+                        title="Lock color">
+                        <i class="fa-solid fa-lock-open text-sm"></i>
+                    </button>
+                    <button class="copy-btn w-8 h-8 rounded-full flex items-center justify-center text-gray-700"
+                        title="Copy">
+                        <i class="fa-regular fa-copy text-sm"></i>
+                    </button>
+                    <button class="like-btn w-8 h-8 rounded-full flex items-center justify-center text-gray-700"
+                        title="Like">
+                        <i class="fa-regular fa-heart text-sm"></i>
+                    </button>
+                    <button class="view-btn w-8 h-8 rounded-full flex items-center justify-center text-gray-700"
+                        title="View shades">
+                        <i class="fa-solid fa-eye text-sm"></i>
+                    </button>
+                    <button class="delete-btn w-8 h-8 rounded-full flex items-center justify-center text-gray-700"
+                        title="Delete">
+                        <i class="fa-solid fa-trash text-sm"></i>
+                    </button>
+                </div>
+                <div class="p-5 pb-8 flex flex-col items-center">
+                    <div class="hex-code text-3xl font-black tracking-wider text-gray-900 mb-1">DBD8AE</div>
+                    <div class="color-name text-sm font-medium text-gray-600 tracking-wide mb-3">Vanilla Custard</div>
+                    <button
+                        class="random-panel-btn bg-white/95 hover:bg-white text-gray-800 text-base font-semibold py-2 px-5 rounded-full border border-gray-300 shadow-sm transition-all flex items-center gap-2 z-10"
+                        title="Randomize color">
+                        <i class="fa-solid fa-arrows-rotate"></i> Random
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add color button -->
+            <div class="add-color-wrapper flex items-center justify-center w-4 shrink-0 relative z-10">
+                <button
+                    class="add-color-btn w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center text-gray-500 hover:text-gray-700 hover:border-gray-400 transition-all">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Panel 3: Rosy Taupe -->
+            <div class="color-panel flex-1 relative group flex flex-col justify-end" style="background-color: #CA907E;">
+                <div class="panel-actions absolute top-4 left-0 right-0 flex flex-col items-center gap-2 z-10">
+                    <button
+                        class="drag-handle w-8 h-8 rounded-full flex items-center justify-center text-white cursor-grab"
+                        title="Drag">
+                        <i class="fa-solid fa-grip-vertical text-sm"></i>
+                    </button>
+                    <button class="lock-btn w-8 h-8 rounded-full flex items-center justify-center text-white"
+                        title="Lock color">
+                        <i class="fa-solid fa-lock-open text-sm"></i>
+                    </button>
+                    <button class="copy-btn w-8 h-8 rounded-full flex items-center justify-center text-white"
+                        title="Copy">
+                        <i class="fa-regular fa-copy text-sm"></i>
+                    </button>
+                    <button class="like-btn w-8 h-8 rounded-full flex items-center justify-center text-white"
+                        title="Like">
+                        <i class="fa-regular fa-heart text-sm"></i>
+                    </button>
+                    <button class="view-btn w-8 h-8 rounded-full flex items-center justify-center text-white"
+                        title="View shades">
+                        <i class="fa-solid fa-eye text-sm"></i>
+                    </button>
+                    <button class="delete-btn w-8 h-8 rounded-full flex items-center justify-center text-white"
+                        title="Delete">
+                        <i class="fa-solid fa-trash text-sm"></i>
+                    </button>
+                </div>
+                <div class="p-5 pb-8 flex flex-col items-center">
+                    <div class="hex-code text-3xl font-black tracking-wider text-white mb-1">CA907E</div>
+                    <div class="color-name text-sm font-medium text-white/80 tracking-wide mb-3">Rosy Taupe</div>
+                    <button
+                        class="random-panel-btn bg-white/95 hover:bg-white text-gray-800 text-base font-semibold py-2 px-5 rounded-full border border-gray-300 shadow-sm transition-all flex items-center gap-2 z-10"
+                        title="Randomize color">
+                        <i class="fa-solid fa-arrows-rotate"></i> Random
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add color button -->
+            <div class="add-color-wrapper flex items-center justify-center w-4 shrink-0 relative z-10">
+                <button
+                    class="add-color-btn w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center text-gray-500 hover:text-gray-700 hover:border-gray-400 transition-all">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Add color button -->
+            <div class="add-color-wrapper flex items-center justify-center w-4 shrink-0 relative z-10">
+                <button
+                    class="add-color-btn w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center text-gray-500 hover:text-gray-700 hover:border-gray-400 transition-all">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Panel 5: Golden Earth -->
+            <div class="color-panel flex-1 relative group flex flex-col justify-end" style="background-color: #895B1E;">
+                <div class="panel-actions absolute top-4 left-0 right-0 flex flex-col items-center gap-2 z-10">
+                    <button
+                        class="drag-handle w-8 h-8 rounded-full flex items-center justify-center text-white cursor-grab"
+                        title="Drag">
+                        <i class="fa-solid fa-grip-vertical text-sm"></i>
+                    </button>
+                    <button class="lock-btn w-8 h-8 rounded-full flex items-center justify-center text-white"
+                        title="Lock color">
+                        <i class="fa-solid fa-lock-open text-sm"></i>
+                    </button>
+                    <button class="copy-btn w-8 h-8 rounded-full flex items-center justify-center text-white"
+                        title="Copy">
+                        <i class="fa-regular fa-copy text-sm"></i>
+                    </button>
+                    <button class="like-btn w-8 h-8 rounded-full flex items-center justify-center text-white"
+                        title="Like">
+                        <i class="fa-regular fa-heart text-sm"></i>
+                    </button>
+                    <button class="view-btn w-8 h-8 rounded-full flex items-center justify-center text-white"
+                        title="View shades">
+                        <i class="fa-solid fa-eye text-sm"></i>
+                    </button>
+                    <button class="delete-btn w-8 h-8 rounded-full flex items-center justify-center text-white"
+                        title="Delete">
+                        <i class="fa-solid fa-trash text-sm"></i>
+                    </button>
+                </div>
+                <div class="p-5 pb-8 flex flex-col items-center">
+                    <div class="hex-code text-3xl font-black tracking-wider text-white mb-1">895B1E</div>
+                    <div class="color-name text-sm font-medium text-white/80 tracking-wide mb-3">Golden Earth</div>
+                    <button
+                        class="random-panel-btn bg-white/95 hover:bg-white text-gray-800 text-base font-semibold py-2 px-5 rounded-full border border-gray-300 shadow-sm transition-all flex items-center gap-2 z-10"
+                        title="Randomize color">
+                        <i class="fa-solid fa-arrows-rotate"></i> Random
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add color button after last panel -->
+            <div class="add-color-wrapper flex items-center justify-center w-4 shrink-0 relative z-10">
+                <button
+                    class="add-color-btn w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center text-gray-500 hover:text-gray-700 hover:border-gray-400 transition-all">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="scripts_coolors.js"></script>
+</body>
+
+</html>

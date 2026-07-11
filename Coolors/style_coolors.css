@@ -1,0 +1,43 @@
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.color-panel {
+    transition: flex 0.3s ease;
+}
+
+.color-panel:hover .panel-actions {
+    opacity: 1;
+}
+
+.panel-actions {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.color-panel:hover .drag-handle {
+    opacity: 1;
+}
+
+.drag-handle {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.lock-btn:hover,
+.copy-btn:hover,
+.like-btn:hover,
+.view-btn:hover,
+.delete-btn:hover,
+.add-btn:hover {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.add-color-btn {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.add-color-wrapper:hover .add-color-btn {
+    opacity: 1;
+}
