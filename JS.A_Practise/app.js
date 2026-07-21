@@ -16,7 +16,7 @@ const initApp = () => {
     searchInput.addEventListener('input', handleInput);
     searchForm.addEventListener('submit', handleSubmit);
     backButton.addEventListener('click', showResultsView);
-    
+
     // Đóng gợi ý khi click ra ngoài
     document.addEventListener('click', (e) => {
         if (!searchForm.contains(e.target)) {
@@ -48,7 +48,7 @@ const handleSearch = async (query) => {
         const suggestions = await fetchSearchResults(query, 3);
         renderSuggestions(suggestions);
     } catch (error) {
-        suggestionsBox.innerHTML = '<div class="error">Lỗi kết nối API</div>';
+        suggestionsBox.innerHTML = '<div class="error">API connection error</div>';
     }
 };
 
@@ -66,7 +66,7 @@ const performSearch = async (query) => {
         currentResults = await fetchSearchResults(query, 20);
         renderResults(currentResults);
     } catch (error) {
-        resultsGrid.innerHTML = '<div class="error">Không thể tải kết quả. Vui lòng thử lại.</div>';
+        resultsGrid.innerHTML = '<div class="error">Failed to load results. Please try again.</div>';
     }
 };
 
@@ -80,7 +80,7 @@ const handleSubmit = async (e) => {
 const renderSuggestions = (suggestions) => {
     suggestionsBox.innerHTML = '';
     if (suggestions.length === 0) return;
-    
+
     suggestions.forEach(article => {
         const item = document.createElement('div');
         item.className = 'suggestion-item';
@@ -97,9 +97,9 @@ const renderSuggestions = (suggestions) => {
 
 const renderResults = (results) => {
     resultsGrid.innerHTML = '';
-    
+
     if (results.length === 0) {
-        resultsGrid.innerHTML = '<div class="error">Không tìm thấy kết quả nào.</div>';
+        resultsGrid.innerHTML = '<div class="error">No results found.</div>';
         showResultsView();
         return;
     }
@@ -107,14 +107,14 @@ const renderResults = (results) => {
     results.forEach(article => {
         const card = document.createElement('div');
         card.className = 'card';
-        
+
         // Sử dụng ảnh mặc định nếu không có ảnh
         const imgUrl = article.thumbnail ? article.thumbnail.source : 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/400px-Wikipedia-logo-v2.svg.png';
-        
+
         card.innerHTML = `
       <img src="${imgUrl}" alt="${article.title}" loading="lazy">
       <h3>${article.title}</h3>
-      <p>${article.extract ? article.extract.substring(0, 100) + '...' : 'Không có mô tả'}</p>
+      <p>${article.extract ? article.extract.substring(0, 100) + '...' : 'No description available'}</p>
     `;
         card.addEventListener('click', () => loadArticle(article.title));
         resultsGrid.appendChild(card);
@@ -124,30 +124,30 @@ const renderResults = (results) => {
 
 const loadArticle = async (title) => {
     showArticleView();
-    
-    // Sử dụng loading trong khung hiển thị bài viết
+
+    // Use loading spinner inside article container
     const articleContent = document.getElementById('article-content');
-    articleContent.innerHTML = '<div class="spinner">Đang tải...</div>';
+    articleContent.innerHTML = '<div class="spinner">Loading...</div>';
 
     try {
         const articleData = await fetchArticleDetails(title);
-        
+
         const imgUrl = articleData.thumbnail ? articleData.thumbnail.source : '';
         const imgTag = imgUrl ? `<img src="${imgUrl}" alt="${articleData.title}" class="article-image">` : '';
-        
+
         articleContent.innerHTML = `
             <div class="article-header">
                 <h2>${articleData.title}</h2>
             </div>
             ${imgTag}
             <div class="article-body">
-                <p>${articleData.extract ? articleData.extract.replace(/\n/g, '<br><br>') : 'Không có nội dung'}</p>
+               <div class="article-extract">
+                    ${articleData.extract || 'No content available'}
+                </div>
             </div>
-            <br>
-            <a href="${articleData.fullurl}" target="_blank" rel="noopener noreferrer" class="read-more-btn">Đọc thêm trên Wikipedia ↗</a>
         `;
     } catch (error) {
-        articleContent.innerHTML = '<div class="error">Lỗi kết nối khi tải bài viết</div>';
+        articleContent.innerHTML = '<div class="error">Error loading article</div>';
     }
 };
 
@@ -163,7 +163,7 @@ const showArticleView = () => {
 };
 
 const renderLoading = () => {
-    resultsGrid.innerHTML = '<div class="spinner">Đang tải...</div>';
+    resultsGrid.innerHTML = '<div class="spinner">Loading...</div>';
 };
 
 // Chạy ứng dụng

@@ -1,6 +1,3 @@
-/* =========================================
-   1. VARIABLES & BAST RESET
-   ========================================= */
 :root {
     --primary-color: #3366cc;
     --bg-color: #f8f9fa;
@@ -18,7 +15,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
     line-height: 1.6;
@@ -30,9 +27,6 @@ body {
     padding: 2rem 1rem;
 }
 
-/* =========================================
-   2. HEADER & SEARCH FORM
-   ========================================= */
 header {
     text-align: center;
     margin-bottom: 3rem;
@@ -40,7 +34,6 @@ header {
 
 h1 {
     font-family: "Georgia", serif;
-    /* Phông chữ mang cảm giác Wikipedia */
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
 }
@@ -88,9 +81,6 @@ button:hover {
     background-color: #274e9c;
 }
 
-/* =========================================
-   3. SUGGESTIONS BOX (DROPDOWN)
-   ========================================= */
 .suggestions-box {
     position: absolute;
     top: 100%;
@@ -108,7 +98,6 @@ button:hover {
 
 .suggestions-box:empty {
     display: none;
-    /* Ẩn đi khi không có gì */
 }
 
 .suggestion-item {
@@ -126,12 +115,8 @@ button:hover {
     background-color: #f1f3f4;
 }
 
-/* =========================================
-   4. RESULTS GRID (CSS GRID)
-   ========================================= */
 .grid-layout {
     display: grid;
-    /* Hiển thị Responsive: Cột tối thiểu 280px, tự động lấp đầy khoảng trống */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
 }
@@ -169,16 +154,13 @@ button:hover {
 .card p {
     color: var(--text-muted);
     font-size: 0.95rem;
-    /* Cắt chữ nếu quá dài (hiển thị 3 dòng) */
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* =========================================
-   5. ARTICLE VIEW
-   ========================================= */
 #article-view {
     background: var(--card-bg);
     padding: 2rem;
@@ -223,9 +205,6 @@ button:hover {
     background-color: #274e9c;
 }
 
-/* =========================================
-   6. UTILITIES (LOADING, ERRORS, HIDDEN)
-   ========================================= */
 .hidden {
     display: none !important;
 }
@@ -236,10 +215,8 @@ button:hover {
     padding: 2rem;
     font-weight: bold;
     grid-column: 1 / -1;
-    /* Chiếm toàn bộ không gian của Grid */
 }
 
-/* CSS Spinner đơn giản */
 .spinner {
     text-align: center;
     padding: 3rem;
@@ -267,9 +244,6 @@ button:hover {
     }
 }
 
-/* =========================================
-   7. RESPONSIVE QUERIES
-   ========================================= */
 @media (max-width: 600px) {
     #search-form {
         flex-direction: column;

@@ -1,35 +1,31 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wikipedia Search App</title>
+    <title>Wiki Search</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>Tra cứu Wikipedia</h1>
+            <h1>Wikipedia Search</h1>
             <form id="search-form">
                 <div class="search-wrapper">
-                    <!-- Yêu cầu tối thiểu 3 ký tự -->
-                    <input type="text" id="search-input" minlength="3" placeholder="Nhập từ khóa (ít nhất 3 ký tự)..."
-                        autocomplete="off" required>
+                    <input type="text" id="search-input" minlength="3" placeholder="Search Wikipedia" autocomplete="off"
+                        required>
                     <div id="suggestions" class="suggestions-box"></div>
                 </div>
-                <button type="submit">Tìm kiếm</button>
+                <button type="submit">Search</button>
             </form>
         </header>
 
         <main>
-            <!-- Grid hiển thị danh sách kết quả -->
             <section id="results-grid" class="grid-layout"></section>
-
-            <!-- Khung hiển thị chi tiết bài viết (ẩn mặc định) -->
             <section id="article-view" class="hidden">
-                <button id="back-button">← Quay lại danh sách</button>
+                <button id="back-button">← Back to results</button>
                 <div id="article-content"></div>
             </section>
         </main>
