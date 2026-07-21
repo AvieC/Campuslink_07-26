@@ -108,7 +108,6 @@ const renderResults = (results) => {
         const card = document.createElement('div');
         card.className = 'card';
 
-        // Sử dụng ảnh mặc định nếu không có ảnh
         const imgUrl = article.thumbnail ? article.thumbnail.source : 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/400px-Wikipedia-logo-v2.svg.png';
 
         card.innerHTML = `
@@ -125,7 +124,6 @@ const renderResults = (results) => {
 const loadArticle = async (title) => {
     showArticleView();
 
-    // Use loading spinner inside article container
     const articleContent = document.getElementById('article-content');
     articleContent.innerHTML = '<div class="spinner">Loading...</div>';
 
@@ -151,7 +149,6 @@ const loadArticle = async (title) => {
     }
 };
 
-// --- CHUYỂN ĐỔI MÀN HÌNH ---
 const showResultsView = () => {
     resultsGrid.classList.remove('hidden');
     articleView.classList.add('hidden');
@@ -166,5 +163,4 @@ const renderLoading = () => {
     resultsGrid.innerHTML = '<div class="spinner">Loading...</div>';
 };
 
-// Chạy ứng dụng
 initApp();
